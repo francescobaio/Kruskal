@@ -26,21 +26,21 @@ def testNodesConnectedComponents():
     plt.plot(nodesNumber, numberConnected)
     plt.xlabel('Numero dei nodi')
     plt.ylabel('Numero delle componenti connesse')
-    plt.savefig('images/numero CC incrementando numero nodi')
+    plt.savefig('images/numero incr numero nodi')
 
     plt.clf()
     plt.cla()
     plt.plot(nodesNumber, time)
     plt.xlabel('numero dei nodi')
     plt.ylabel('tempo in millisecondi')
-    plt.savefig('images/tempo findCc incrementando numero nodi')
+    plt.savefig('images/tempo incr numero nodi')
 
 
 def testEdgeProbabilityConnectedComponents():
     plt.clf()
     plt.cla()
     nodesNumber = 200
-    probability = np.arange(0, 0.1, 0.001)
+    probability = np.arange(0, 1, 0.01)
     numberConnected = []
     time = []
     for i in range(len(probability)):
@@ -51,14 +51,14 @@ def testEdgeProbabilityConnectedComponents():
     plt.plot(probability, time)
     plt.xlabel('Probabilità di presenza degli archi')
     plt.ylabel('tempo in millisecondi')
-    plt.savefig('images/tempo incrementando probabilità')
+    plt.savefig('images/tempo incr prob')
 
     plt.clf()
     plt.cla()
     plt.plot(probability, numberConnected)
     plt.xlabel('probabilità di presenza degli archi')
     plt.ylabel('numero delle componenti connesse')
-    plt.savefig('images/numero incrementando probabilità')
+    plt.savefig('images/numero incr prob')
 
 
 
