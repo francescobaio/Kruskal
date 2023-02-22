@@ -18,14 +18,18 @@ class UnionFind:
         return node.list[0]
 
     def union(self, node, otherNode):
+
+        tmp = otherNode.list
+        ptr = node.list
+
         if self.findSet(node) != self.findSet(otherNode):
             if len(node.list) > len(otherNode.list):
                 for i in range(len(otherNode.list)):
-                    otherNode.list[i] = node.list
-                node.list += otherNode.list
-                self.lists.remove(otherNode.list)
+                    tmp[i].list = node.list
+                node.list += tmp
+                self.lists.remove(tmp)
             else:
                 for i in range(len(node.list)):
-                    node.list[i] = otherNode.list
-                otherNode.list += node.list
-                self.lists.remove(node.list)
+                    ptr[i].list = otherNode.list
+                otherNode.list += ptr
+                self.lists.remove(ptr)

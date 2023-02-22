@@ -12,5 +12,4 @@ def findConnectedComponents(Graph):
             if (Graph[i][j] != 0) and (uf.findSet(nodes[i]) != uf.findSet(nodes[j])):
                 uf.union(nodes[i],nodes[j])
 
-    print(uf.lists[0])
     return uf
