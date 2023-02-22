@@ -13,12 +13,12 @@ def testNodesConnectedComponents():
     plt.clf()
     plt.cla()
 
-    edgeProbability = 0.01
+    probability = 0.01
     nodesNumber = range(10, 100, 1)
     numberConnected = []
     time = []
     for i in range(len(nodesNumber)):
-        y = testHelperConnectedComponents(nodesNumber[i], edgeProbability)
+        y = testHelperConnectedComponents(nodesNumber[i], probability)
         numberConnected.append(y[1])
         time.append(y[0] * 1000)
 
@@ -40,31 +40,31 @@ def testEdgeProbabilityConnectedComponents():
     plt.clf()
     plt.cla()
     nodesNumber = 200
-    edgeProbability = np.arange(0, 0.1, 0.001)
+    probability = np.arange(0, 0.1, 0.001)
     numberConnected = []
     time = []
-    for i in range(len(edgeProbability)):
-        y = testHelperConnectedComponents(nodesNumber, edgeProbability[i])
+    for i in range(len(probability)):
+        y = testHelperConnectedComponents(nodesNumber, probability[i])
         numberConnected.append(y[1])
         time.append(y[0]*1000)
-        edgeProbability[i] *= 100
-    plt.plot(edgeProbability, time)
+        probability[i] *= 100
+    plt.plot(probability, time)
     plt.xlabel('Probabilità di presenza degli archi')
     plt.ylabel('tempo in millisecondi')
-    plt.savefig('tempo incrementando probabilità')
+    plt.savefig('images/tempo incrementando probabilità')
 
     plt.clf()
     plt.cla()
-    plt.plot(edgeProbability, numberConnected)
+    plt.plot(probability, numberConnected)
     plt.xlabel('probabilità di presenza degli archi')
     plt.ylabel('numero delle componenti connesse')
     plt.savefig('images/numero incrementando probabilità')
 
 
 
-def testHelperConnectedComponents(nodesNumber, edgeProbability):
+def testHelperConnectedComponents(nodesNumber, probability):
     g = GraphGenerator()
-    graph = g.generateGraph(edgeProbability,nodesNumber)
+    graph = g.generateGraph(probability,nodesNumber)
     repetitionNumber = 100
     time = 0
     connectedComponentsNumber = 0
@@ -81,29 +81,29 @@ def testHelperConnectedComponents(nodesNumber, edgeProbability):
 def testNodesNumberKruskal():
     plt.clf()
     plt.cla()
-    edgeProbability = 0.01
+    probability = 0.01
     nodesNumber = range(100, 1000, 10)
     y = []
     for i in range(len(nodesNumber)):
-        y.append((testHelperKruskal(nodesNumber[i], edgeProbability))*1000)
+        y.append((testHelperKruskal(nodesNumber[i], probability))*1000)
     plt.plot(nodesNumber, y)
     plt.xlabel('numero dei nodi')
     plt.ylabel('tempo in millisecondi')
-    plt.savefig('images/test_numeroNodi_kruskal')
+    plt.savefig('images/test_Nodi_kruskal')
 
 def testEdgeProbabilityKruskal():
     plt.clf()
     plt.cla()
     nodesNumber = 30
-    edgeProbability = np.arange(0, 1, 0.01)
+    probability = np.arange(0, 1, 0.01)
     y = []
-    for i in range(len(edgeProbability)):
-        y.append((testHelperKruskal(nodesNumber, edgeProbability[i]))*1000)
-        edgeProbability[i] *= 100
-    plt.plot(edgeProbability, y)
+    for i in range(len(probability)):
+        y.append((testHelperKruskal(nodesNumber, probability[i]))*1000)
+        probability[i] *= 100
+    plt.plot(probability, y)
     plt.xlabel('Probabilità archi')
     plt.ylabel('Tempo in millisecondi')
-    plt.savefig('images/test_probabilità_kruskal')
+    plt.savefig('images/test_pro_kruskal')
 
 
 
@@ -112,9 +112,8 @@ def testHelperKruskal(nodesNumber, edgeProbability):
     graph = g.generateWeightedGraph(edgeProbability,nodesNumber)
     time = 0
     for j in range(10):
-        k = kruskal(graph)
         start = timer()
-        k.kruskal()
+        kruskal(graph)
         end = timer()
         time += end - start
     return time / 10
